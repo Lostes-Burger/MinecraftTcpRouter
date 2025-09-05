@@ -2,11 +2,13 @@
   "listen_port": 25010,
   "listen_adress": "0.0.0.0",
   "allow_fallback": false,
+  "socket_timeout": 10000,
   "default_backend": {
-    "host": "172.19.0.1",
+    "host": "127.0.0.1",
     "port": 25565
   },
   "routes": {
-    "play.saftnetwork.de": { "host": "172.19.0.1", "port": 25565 }
+    "server1.domain.de": { "host": "172.19.0.1", "port": 25560 },
+    "server2.domain.de": { "host": "172.19.0.1", "port": 25561 }
   }
 }

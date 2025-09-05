@@ -1,7 +1,6 @@
 const net = require('net');
 const fs = require('fs').promises;
 
-// 🌐  Load config
 let config = {};
 (async () => {
   try {
@@ -14,7 +13,6 @@ let config = {};
   }
 })();
 
-// 🔧  VarInt reader (sync utility)
 function readVarInt(buffer, offset = 0) {
   let numRead = 0, result = 0, read;
   do {
@@ -27,7 +25,6 @@ function readVarInt(buffer, offset = 0) {
   return { value: result, size: numRead };
 }
 
-// 🧼  Safe socket shutdown
 function safeEnd(socket) {
   if (socket && !socket.destroyed) {
     try { socket.end(); } catch {}
@@ -35,7 +32,6 @@ function safeEnd(socket) {
   }
 }
 
-// 🚀  Main proxy function
 function startProxy() {
   const server = net.createServer(clientSocket => {
     console.log(`🔗  New connection from ${clientSocket.remoteAddress}`);
@@ -44,7 +40,7 @@ function startProxy() {
     let parsed = false;
     let backendSocket = null;
 
-    clientSocket.setTimeout(10000, () => {
+    clientSocket.setTimeout(config.socket_timeout, () => {
       console.warn('⏳  Connection timeout – closing');
       safeEnd(clientSocket);
     });
@@ -102,14 +98,13 @@ function startProxy() {
             target = config.default_backend;
             console.log(`🔀  Using fallback backend: ${target.host}:${target.port}`);
           } else {
-            console.warn(`⛔  Address not allowed: ${serverAddress}`);
+            console.warn(`⛔  Address not allowed (no default enabled): ${serverAddress}`);
             return safeEnd(clientSocket);
           }
         } else {
           console.log(`✅  Forwarding to ${target.host}:${target.port}`);
         }
 
-        // 🔄  Connect to backend
         backendSocket = net.connect(target.port, target.host, () => {
           backendSocket.write(handshakeBuffer);
           clientSocket.pipe(backendSocket);
