@@ -1,22 +1,24 @@
-# MineRoute – Minimal Minecraft TCP Router
+# Minecraft TCP Router
 
 MineRoute is a lightweight, domain-based TCP router for Minecraft servers.  
 It listens for incoming Minecraft connections and routes them to different servers based on the domain the client connected with – all without modifying packets or acting as a full Minecraft proxy.
 
 ## Why not use a normal Proxy like Velocity or Bungeecord
-This is useful if you have multimple single servers or even whole networks running on the same mashiene. Normaly only one server can use port 25565. 
-With this project you can join every server on port 25565 (so no need to set a port when joining) just with different domains.
+This project is needed if you have multiple standalone servers or entire Minecraft networks running on the same host. Normally, only one server can use port 25565.
+With this project, you can connect to each server through port 25565 (no need to specify a port when joining), simply by using different domains.
 
-For example: you have 2 minecraft networks running, each with their own Velocity/Bungeecord proxy.
-You want each network to be accessible using port 25565.
-Set one subdomain for one server (network1.domain.de)
-and another one for the other (network2.domain.de),
-point both DNS reccords to the same ip and start up Minecraft TCP Router on port 25565.
-Edit the config, so the proxy knows where to send connections, depending on the domain and enjoy!
+Example:
+You have two Minecraft networks, each with its own Velocity or BungeeCord proxy.
+You want both networks to be accessible via port 25565.
 
-All minecraft traffic will be routed. Pings in the server list and connections.
+Set up one subdomain for the first network (e.g. network1.domain.de)
+and another for the second (e.g. network2.domain.de).
+Point both DNS records to the same IP address and run the Minecraft TCP Router on port 25565.
+Then, configure the router to forward incoming connections based on the domain used — and you're good to go!
 
-## 🔧 Features
+All Minecraft traffic will be correctly routed — including server list pings and player connections.
+
+### 🔧 Features
 
 - **Fast and minimal** – just raw TCP routing
 - **Domain-based forwarding** via Minecraft handshake
@@ -24,19 +26,19 @@ All minecraft traffic will be routed. Pings in the server list and connections.
 - **Safe against scanners** like `nmap` (no crash or garbage)
 - **Not a Minecraft proxy** like Velocity or Bungee – just routing
 
-## How It Works
+### How It Works
 Minecraft clients send a domain in the first handshake packet.
 The router reads this domain (e.g. server1.example.net).
 If the domain is listed in routes, it forwards the raw TCP connection to the target backend server. (server1.example.net -> localhost:25566)
 If the domain is not found and allow_fallback is enabled, the connection is forwarded to the default backend.
 If no route and no fallback, the connection is rejected.
 
-## Requirements
+### Requirements
 - Node.js v14 or higher
-- Basic TCP knolage to setup correct port and ip. (Depending on you setup)
+- Basic TCP knowledge to setup correct port and ip. (Depending on you setup)
 - DNS reccords pointing to the Proxy
 
-## Configuration example
+### Configuration example
 - listen_port: The TCP port the router listens on (default Minecraft port is 25565)
 - listen_adress: The IP address the router binds to (use 0.0.0.0 to listen on all interfaces)
 - allow_fallback: If true, unknown domains are forwarded to the default_backend – if false, they're rejected
