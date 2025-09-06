@@ -17,6 +17,7 @@ Point both DNS records to the same IP address and run the Minecraft TCP Router o
 Then, configure the router to forward incoming connections based on the domain used — and you're good to go!
 
 All Minecraft traffic will be correctly routed — including server list pings and player connections.
+No need to worry about online mode or other settings - just raw TCP forwarding.
 
 ### 🔧 Features
 

@@ -141,6 +141,7 @@ function startProxy() {
   });
 
   server.listen(config.listen_port, config.listen_adress, () => {
+    console.log("Started!")
     console.log(`🚀  Proxy started on ${config.listen_adress}:${config.listen_port}`);
   });
 }
