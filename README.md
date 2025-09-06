@@ -1,6 +1,6 @@
 # Minecraft TCP Router
 
-MineRoute is a lightweight, domain-based TCP router for Minecraft servers.  
+Minecraft TCP Router is a lightweight, domain-based TCP router for Minecraft servers.  
 It listens for incoming Minecraft connections and routes them to different servers based on the domain the client connected with – all without modifying packets or acting as a full Minecraft proxy.
 
 ## Why not use a normal Proxy like Velocity or Bungeecord
