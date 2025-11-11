@@ -90,8 +90,8 @@ function startProxy() {
         }
 
         console.log(`🌍  Server address detected: ${serverAddress}`);
-        let serverAddressSanatized = String.prototype.toLowerCase(serverAddress);
-        let target = config.routes[serverAddressSanatized];
+      
+        let target = config.routes[serverAddress.toLowerCase()];
 
         if (!target) {
           if (config.allow_fallback) {
