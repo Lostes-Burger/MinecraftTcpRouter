@@ -4,7 +4,7 @@
   "allow_fallback": false,
   "socket_timeout": 20000,
   "default_backend": {
-    "host": "127.0.0.1",
+    "host": "0.0.0.0",
     "port": 25555
   },
   "routes": {
