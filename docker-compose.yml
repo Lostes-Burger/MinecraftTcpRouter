@@ -1,0 +1,15 @@
+services:
+  minecraft-router:
+    image: node:20-alpine
+    container_name: minecraft-tcp-router
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "25565:25565"
+    command: sh -c "npm install && node index.js"
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    network_mode: bridge
+
