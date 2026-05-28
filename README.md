@@ -19,7 +19,7 @@ Then, configure the router to forward incoming connections based on the domain u
 All Minecraft traffic will be correctly routed — including server list pings and player connections.
 No need to worry about online mode or other settings - just raw TCP forwarding.
 
-### 🔧 Features
+### Features
 
 - **Fast and minimal** – just raw TCP routing
 - **Domain-based forwarding** via Minecraft handshake
@@ -72,4 +72,4 @@ If no route and no fallback, the connection is rejected.
 
 
 
-Made with ❤️ by Lostes_Burger
+VibeCoded using ChatGPT Codex
